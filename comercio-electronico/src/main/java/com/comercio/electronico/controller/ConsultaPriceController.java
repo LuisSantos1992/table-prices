@@ -8,13 +8,12 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("api/promotion/version")
-public class VersionController {
+@RequestMapping("api/promotion")
+public class ConsultaPriceController {
 
-    @GetMapping(value="/application", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value="/getPrice", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    private String getVersionAplication() {
+    private String getPrice() {
         return "Version 1.0";
     }
-
 }
