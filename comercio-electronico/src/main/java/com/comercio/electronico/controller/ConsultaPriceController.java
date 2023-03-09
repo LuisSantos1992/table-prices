@@ -16,4 +16,6 @@ public class ConsultaPriceController {
     private String getPrice() {
         return "Version 1.0";
     }
+
+
 }
