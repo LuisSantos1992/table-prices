@@ -3,6 +3,8 @@ package com.comercio.electronico.controller;
 import com.comercio.electronico.dto.PriceDTO;
 import com.comercio.electronico.dto.ResponseDTO;
 import com.comercio.electronico.serviceimpl.PricesServiceImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -16,12 +18,26 @@ import java.util.Optional;
 @RequestMapping("api/promotion")
 public class ConsultaPriceController {
 
+    private static  final Logger logger =  LoggerFactory.getLogger(ConsultaPriceController.class);
     @Autowired
     PricesServiceImpl priceServiceImpl;
 
     @GetMapping(value = "/getAllPrices", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     private List<PriceDTO> getAllPrices() {
+        List<PriceDTO> prices = priceServiceImpl.getAllPrices();
+        return prices;
+    }
+
+    @GetMapping(value = "/getPromotionNow", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    private List<PriceDTO> getPromotionNow(@RequestParam("applicationDate") String applicationDate,
+                                           @RequestParam("productId") String productId,
+                                           @RequestParam("brandId") String brandId) {
+        logger.info("applicationDate: "+applicationDate);
+        logger.info("productId: "+productId);
+        logger.info("brandId: "+brandId);
+
         List<PriceDTO> prices = priceServiceImpl.getAllPrices();
         return prices;
     }
