@@ -18,7 +18,7 @@ public class Prices {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long priceList;
+	private Integer priceList;
 	private String name;
 	private Date startDate;
 	private Date endDate;
