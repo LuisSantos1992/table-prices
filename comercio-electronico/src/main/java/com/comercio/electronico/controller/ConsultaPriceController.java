@@ -1,5 +1,8 @@
 package com.comercio.electronico.controller;
 
+import com.comercio.electronico.dto.PriceDTO;
+import com.comercio.electronico.serviceimpl.PricesServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,14 +15,20 @@ import org.springframework.web.bind.annotation.RestController;
 import com.comercio.electronico.dto.PromotionDTO;
 import com.comercio.electronico.dto.PromotionResponseDTO;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("api/promotion")
 public class ConsultaPriceController {
 
-    @GetMapping(value="/getPrice", produces = MediaType.APPLICATION_JSON_VALUE)
+    @Autowired
+    PricesServiceImpl priceServiceImpl;
+
+    @GetMapping(value="/getAllPrices", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    private String getPrice() {
-        return "Version 1.0";
+    private List<PriceDTO> getAllPrices() {
+        List<PriceDTO> prices = priceServiceImpl.getAllPrices();
+        return prices;
     }
     
     @PostMapping(value="/getPromotion", produces = MediaType.APPLICATION_JSON_VALUE)
