@@ -8,6 +8,7 @@ class ComercioElectronicoApplicationTests {
 
 	@Test
 	void contextLoads() {
+		System.out.println("");
 	}
 
 }
