@@ -35,7 +35,7 @@ public class PricesServiceImpl implements PricesService {
     public Optional<PriceDTO> findById(Integer id) {
         Optional<Prices> prices = pricesRepository.findById(id);
         if (prices.isEmpty()){
-            throw new EntityNotFoundException("Centro not found.");
+            throw new EntityNotFoundException("No se encontraron resultados.");
         }
         return prices.map(b -> modelMapper.map(b, PriceDTO.class));
     }
