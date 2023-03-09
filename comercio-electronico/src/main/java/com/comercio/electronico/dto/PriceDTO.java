@@ -12,7 +12,7 @@ import java.util.Date;
 @Data
 public class PriceDTO {
 
-    private Long priceList;
+    private Integer priceList;
     private String name;
     private Date startDate;
     private Date endDate;

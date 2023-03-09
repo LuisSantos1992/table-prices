@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.modelmapper.ModelMapper;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -32,7 +33,11 @@ public class PricesServiceImpl implements PricesService {
 
     @Override
     public Optional<PriceDTO> findById(Integer id) {
-        return Optional.empty();
+        Optional<Prices> prices = pricesRepository.findById(id);
+        if (prices.isEmpty()){
+            throw new EntityNotFoundException("Centro not found.");
+        }
+        return prices.map(b -> modelMapper.map(b, PriceDTO.class));
     }
 
     @Override
