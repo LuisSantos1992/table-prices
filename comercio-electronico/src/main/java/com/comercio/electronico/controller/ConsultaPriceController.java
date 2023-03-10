@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -54,7 +55,12 @@ public class ConsultaPriceController {
             p.setStartDateStr(formatter.format(p.getStartDate()));
             p.setEndDateStr(formatter.format(p.getEndDate()));
         }
-        return prices;
+        //Retornar la lista nueva con la prioridad
+        List<PriceDTO> pricesMostrar = new ArrayList<>();
+        for (PriceDTO m : pricesMostrar){
+
+        }
+        return pricesMostrar;
     }
 
 
