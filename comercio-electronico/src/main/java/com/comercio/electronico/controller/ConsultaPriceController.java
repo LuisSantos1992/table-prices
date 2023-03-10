@@ -62,13 +62,18 @@ public class ConsultaPriceController {
             }*/
 
             logger.info("list old: "+ prices.toString());
-            for (PriceDTO m : prices){
-                m.setStartDateStr(formatter.format(m.getStartDate()));
-                m.setEndDateStr(formatter.format(m.getEndDate()));
-                if(m.getPriority() == 1){
-                    pricesMostrar.add(m);
-                }
+            logger.info("number: "+ prices.size());
+            if(prices.size() >1 ){
+                for (PriceDTO m : prices){
+                    m.setStartDateStr(formatter.format(m.getStartDate()));
+                    m.setEndDateStr(formatter.format(m.getEndDate()));
+                    if(m.getPriority() == 1){
+                        pricesMostrar.add(m);
+                    }
 
+                }
+            }else{
+                pricesMostrar.add(prices.get(0));
             }
             logger.info("list New: "+pricesMostrar.toString());
 
