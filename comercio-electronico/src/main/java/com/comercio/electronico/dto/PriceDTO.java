@@ -15,7 +15,6 @@ import java.util.Date;
 @AllArgsConstructor
 @Data
 public class PriceDTO {
-
     private Integer priceList;
     private String name;
     @JsonIgnore
@@ -32,4 +31,5 @@ public class PriceDTO {
 
     private ProductsDTO product;
     private BrandsDTO brand;
+
 }
