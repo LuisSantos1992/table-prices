@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.modelmapper.ModelMapper;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -53,5 +54,14 @@ public class PricesServiceImpl implements PricesService {
     @Override
     public void delete(Long id) {
 
+    }
+
+    @Override
+    public List<PriceDTO> findPricesPromotion(Integer brandId, Integer idProduct, Date startDate, Date enddate) {
+        List<PriceDTO> prices = pricesRepository.findPricesPromotion(brandId,idProduct,startDate,enddate)
+                .stream()
+                .map(price -> modelMapper.map(price, PriceDTO.class))
+                .collect(Collectors.toList());
+        return prices;
     }
 }

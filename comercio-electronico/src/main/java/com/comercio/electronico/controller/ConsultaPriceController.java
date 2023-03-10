@@ -11,6 +11,9 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,12 +36,30 @@ public class ConsultaPriceController {
     @ResponseStatus(HttpStatus.OK)
     private List<PriceDTO> getPromotionNow(@RequestParam("applicationDate") String applicationDate,
                                            @RequestParam("productId") String productId,
-                                           @RequestParam("brandId") String brandId) {
+                                           @RequestParam("brandId") String brandId) throws ParseException {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        Date startdate = formatter.parse(applicationDate);
         logger.info("applicationDate: "+applicationDate);
         logger.info("productId: "+productId);
         logger.info("brandId: "+brandId);
+        Integer brand = Integer.parseInt(brandId);
+        Integer product = Integer.parseInt(productId);
+        List<PriceDTO> prices = priceServiceImpl.findPricesPromotion(brand,product,startdate,startdate);
 
-        List<PriceDTO> prices = priceServiceImpl.getAllPrices();
+        return prices;
+    }
+
+
+    @GetMapping(value = "/getAllPricesTest", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    private List<PriceDTO> getAllPricesTest() throws ParseException {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        Integer brand = Integer.parseInt("1");
+        Integer product = Integer.parseInt("1");
+        Date startdate = formatter.parse("2020-06-14 00:00:00");
+        Date endDate = formatter.parse("2020-06-14 18:30:00");
+        List<PriceDTO> prices = priceServiceImpl.findPricesPromotion(brand,product,startdate,endDate);
+
         return prices;
     }
 

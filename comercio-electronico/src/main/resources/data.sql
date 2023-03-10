@@ -8,7 +8,7 @@ INSERT INTO PRODUCTS (name,product_id) VALUES
                                            ('Camisa Dama T-S',35465),
                                            ('Pantalon T- 34',35475);
 
-INSERT INTO PRICES  (curr,end_date,name,price,priority,start_date,brand_id,id) VALUES
+INSERT INTO PRICES  (curr,start_date,name,price,priority,end_date,brand_id,prod_Id) VALUES
                                                                                            ('USD', {ts '2020-06-14 00.00.00'},'Promocion Camisas',35.50,0, {ts '2020-12-31 23.59.59'},1,1),
                                                                                            ('USD', {ts '2020-06-14 15.00.00'},'Promocion Camisas',25.45,1, {ts '2020-06-14 18.30.00'},1,1),
                                                                                            ('USD', {ts '2020-06-15 00.00.00'},'Promocion Camisas',30.50,1, {ts '2020-06-15 11.00.00'},1,1),
