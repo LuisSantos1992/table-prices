@@ -82,6 +82,7 @@ public class ConsultaPriceController {
                 priceUnic.setPriceList(prices.get(0).getPriceList());
                 priceUnic.setPriority(prices.get(0).getPriority());
                 priceUnic.setProduct(prices.get(0).getProduct());
+                priceUnic.setPrice(prices.get(0).getPrice());
                 pricesMostrar.add(priceUnic);
             }
             logger.info("list New: "+pricesMostrar.toString());
