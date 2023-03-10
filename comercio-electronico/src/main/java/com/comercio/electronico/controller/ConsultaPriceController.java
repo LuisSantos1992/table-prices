@@ -28,7 +28,12 @@ public class ConsultaPriceController {
     @GetMapping(value = "/getAllPrices", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     private List<PriceDTO> getAllPrices() {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         List<PriceDTO> prices = priceServiceImpl.getAllPrices();
+        for(PriceDTO p : prices){
+            p.setStartDateStr(formatter.format(p.getStartDate()));
+            p.setEndDateStr(formatter.format(p.getEndDate()));
+        }
         return prices;
     }
 
@@ -59,9 +64,9 @@ public class ConsultaPriceController {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Integer brand = Integer.parseInt("1");
         Integer product = Integer.parseInt("1");
-        Date startdate = formatter.parse("2020-06-14 00:00:00");
+        Date startdate = formatter.parse("2020-06-14 15:00:00");
         Date endDate = formatter.parse("2020-06-14 18:30:00");
-        List<PriceDTO> prices = priceServiceImpl.findPricesPromotion(brand,product,startdate,endDate);
+        List<PriceDTO> prices = priceServiceImpl.findPricesPromotion(brand,product,startdate,startdate);
         for(PriceDTO p : prices){
             p.setStartDateStr(formatter.format(p.getStartDate()));
             p.setEndDateStr(formatter.format(p.getEndDate()));
