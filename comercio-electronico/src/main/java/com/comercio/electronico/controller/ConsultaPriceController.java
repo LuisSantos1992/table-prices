@@ -29,7 +29,7 @@ public class ConsultaPriceController {
 
     @GetMapping(value = "/getAllPrices", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    private List<PriceDTO> getAllPrices() {
+    public List<PriceDTO> getAllPrices() {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         List<PriceDTO> prices = priceServiceImpl.getAllPrices();
         for(PriceDTO p : prices){
@@ -41,7 +41,7 @@ public class ConsultaPriceController {
 
     @GetMapping(value = "/getPromotionNow", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    private List<PriceDTO> getPromotionNow(@RequestParam("applicationDate") String applicationDate,
+    public List<PriceDTO> getPromotionNow(@RequestParam("applicationDate") String applicationDate,
                                            @RequestParam("productId") String productId,
                                            @RequestParam("brandId") String brandId) throws ParseException {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -52,6 +52,7 @@ public class ConsultaPriceController {
 
         //Retornar la lista nueva con la prioridad
         List<PriceDTO> pricesMostrar = new ArrayList<>();
+        PriceDTO priceUnic = new PriceDTO();
         try{
             Integer brand = Integer.parseInt(brandId);
             Integer product = Integer.parseInt(productId);
@@ -73,7 +74,15 @@ public class ConsultaPriceController {
 
                 }
             }else{
-                pricesMostrar.add(prices.get(0));
+                priceUnic.setStartDateStr(formatter.format(prices.get(0).getStartDate()));
+                priceUnic.setEndDateStr(formatter.format(prices.get(0).getEndDate()));
+                priceUnic.setBrand(prices.get(0).getBrand());
+                priceUnic.setName(prices.get(0).getName());
+                priceUnic.setCurr(prices.get(0).getCurr());
+                priceUnic.setPriceList(prices.get(0).getPriceList());
+                priceUnic.setPriority(prices.get(0).getPriority());
+                priceUnic.setProduct(prices.get(0).getProduct());
+                pricesMostrar.add(priceUnic);
             }
             logger.info("list New: "+pricesMostrar.toString());
 
@@ -88,7 +97,7 @@ public class ConsultaPriceController {
 
     @GetMapping(value = "/getAllPricesTest", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    private List<PriceDTO> getAllPricesTest() throws ParseException {
+    public List<PriceDTO> getAllPricesTest() throws ParseException {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Integer brand = Integer.parseInt("1");
         Integer product = Integer.parseInt("1");
@@ -104,7 +113,7 @@ public class ConsultaPriceController {
     }
 
     @GetMapping(value = "/getPricesById/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    private ResponseEntity<Object> getAllPrices(@PathVariable Integer id) {
+    public ResponseEntity<Object> getAllPrices(@PathVariable Integer id) {
         Optional<PriceDTO> prices;
         ResponseDTO response = null;
         Object respuesta;
