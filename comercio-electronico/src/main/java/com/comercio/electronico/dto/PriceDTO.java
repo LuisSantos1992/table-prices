@@ -3,6 +3,8 @@ package com.comercio.electronico.dto;
 import com.comercio.electronico.model.Brands;
 import com.comercio.electronico.model.Products;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,18 +15,21 @@ import java.util.Date;
 @AllArgsConstructor
 @Data
 public class PriceDTO {
-
     private Integer priceList;
     private String name;
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
-    private LocalDateTime startDate;
-
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
-    private LocalDateTime endDate;
+    @JsonIgnore
+    private Date startDate;
+    //@JsonProperty("endDate")
+    private String startDateStr;
+    @JsonIgnore
+    private Date endDate;
+    //@JsonProperty("endDate")
+    private String endDateStr;
     private int priority;
     private Double price;
     private String curr;
 
     private ProductsDTO product;
     private BrandsDTO brand;
+
 }
