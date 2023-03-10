@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class BrandsDTO {
-    private Long brandId;
+    private Integer brandId;
     private String name;
 }

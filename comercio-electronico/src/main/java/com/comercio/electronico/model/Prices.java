@@ -32,11 +32,11 @@ public class Prices {
 	
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "idProduct")
+	@JoinColumn(name = "id")
 	private Products product;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "idBrand")
+	@JoinColumn(name = "brandId")
 	private Brands brand;
 
 }
