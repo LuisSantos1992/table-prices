@@ -21,7 +21,7 @@ public class ComercioElectronicoApplication {
 					.allowedOrigins("*")
 					.allowedMethods("GET", "POST", "PUT", "DELETE")
 					.allowedHeaders("*")
-					.exposedHeaders("MILTIBECAS-PLATFORM");      }   };
+					.exposedHeaders("BANCA SEGUROS-PLATFORM");      }   };
 	}
 
 }
