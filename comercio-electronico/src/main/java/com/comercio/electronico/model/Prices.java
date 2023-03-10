@@ -22,17 +22,15 @@ public class Prices {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer priceList;
 	private String name;
-	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-	private LocalDateTime startDate;
-	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-	private LocalDateTime endDate;
+	private Date startDate;
+	private Date endDate;
 	private int priority;
 	private Double price;
 	private String curr;
 	
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id")
+	@JoinColumn(name = "prodId")
 	private Products product;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
