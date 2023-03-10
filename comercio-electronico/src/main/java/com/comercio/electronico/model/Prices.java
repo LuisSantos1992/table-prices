@@ -1,10 +1,12 @@
 package com.comercio.electronico.model;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,8 +22,10 @@ public class Prices {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer priceList;
 	private String name;
-	private Date startDate;
-	private Date endDate;
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+	private LocalDateTime startDate;
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+	private LocalDateTime endDate;
 	private int priority;
 	private Double price;
 	private String curr;
