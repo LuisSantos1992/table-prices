@@ -18,7 +18,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+//CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("api/promotion")
 public class ConsultaPriceController {
