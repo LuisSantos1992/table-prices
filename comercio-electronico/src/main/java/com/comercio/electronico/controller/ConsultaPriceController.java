@@ -48,19 +48,35 @@ public class ConsultaPriceController {
         logger.info("applicationDate: "+applicationDate);
         logger.info("productId: "+productId);
         logger.info("brandId: "+brandId);
-        Integer brand = Integer.parseInt(brandId);
-        Integer product = Integer.parseInt(productId);
-        List<PriceDTO> prices = priceServiceImpl.findPricesPromotion(brand,product,startdate,startdate);
-        for(PriceDTO p : prices){
-            p.setStartDateStr(formatter.format(p.getStartDate()));
-            p.setEndDateStr(formatter.format(p.getEndDate()));
-        }
+
         //Retornar la lista nueva con la prioridad
         List<PriceDTO> pricesMostrar = new ArrayList<>();
-        for (PriceDTO m : pricesMostrar){
+        try{
+            Integer brand = Integer.parseInt(brandId);
+            Integer product = Integer.parseInt(productId);
+            List<PriceDTO> prices = priceServiceImpl.findPricesPromotion(brand,product,startdate,startdate);
+            /*for(PriceDTO p : prices){
+                p.setStartDateStr(formatter.format(p.getStartDate()));
+                p.setEndDateStr(formatter.format(p.getEndDate()));
+            }*/
 
+            logger.info("list old: "+ prices.toString());
+            for (PriceDTO m : prices){
+                m.setStartDateStr(formatter.format(m.getStartDate()));
+                m.setEndDateStr(formatter.format(m.getEndDate()));
+                if(m.getPriority() == 1){
+                    pricesMostrar.add(m);
+                }
+
+            }
+            logger.info("list New: "+pricesMostrar.toString());
+
+        }catch(Exception e){
+            logger.info("Error de Proceso: "+e);
         }
+
         return pricesMostrar;
+        //return prices;
     }
 
 
